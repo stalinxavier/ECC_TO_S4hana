@@ -1,0 +1,13 @@
+BusinessPartner,Country,OrganizationBPName1,OrganizationBPName2,OrganizationBPName3,OrganizationBPName4,CityName,District,POBox,POBoxPostalCode,PostalCode,Region,SearchTerm1,StreetName,SearchTerm2,FormOfAddress,InternationalLocationNumber1,InternationalLocationNumber2,AuthorizationGroup,Industry,CreationDate,CreatedByUser,BusinessPartnerGrouping,BusinessPartnerIsMarkedForDeletion,BusinessPartnerIsBlocked,CorrespondenceLanguage,BPTaxNumber,PhoneNumber,FaxNumber,BirthplaceName,BirthDate,GenderCode,POBoxLobbyName,TaxJurisdiction,TransportationZone,WebsiteURL,LastChangeDate,LastChangeTime
+0000000006,US,Jabra Industries,,,,Katy,,,,77435,TX,JABRA INDU,864 Pimlico Pine Lane,JABRA INDUSTRIES,Company,0,0,,,2024-09-13,ARAVIND,0009,,,EN,,,,,,,,,,,,PT00H00M00S
+0000100005,US,Jabra Industries,,,,Houston,,,,77036-3322,TX,JABRA INDU,6001 Savoy Dr Ste 210,JABRA INDUSTRIES,Company,0,0,,,2024-09-16,ARAVIND,KRED,,,EN,,,,,,,,,,,,PT00H00M00S
+0000100006,US,GAIL Gas Limited,,,,Lafayette,,,,70508-2172,LA,GAIL,2110 SW Evangeline Thruway,GAIL GAS LIMITED,Company,0,0,,,2024-09-16,ARAVIND,KRED,,,EN,,,,,,,,,,,,PT00H00M00S
+0000100007,US,Oil and Natural Gas Corporation,,,,Katy,,,,77435,TX,OIL AND NA,"259 N, Longview",OIL AND NATURAL GAS CORPO,Company,0,0,,,2024-09-16,ARAVIND,KRED,,,EN,,,,,,,,,,,,PT00H00M00S
+0000100008,US,Mike,Tyson,,,Houston,,,,77036,TX,MIKE,Central Park,MIKE,Mr.,0,0,,,2024-11-19,SRIDEVAN,KRED,,,EN,,,,,,,,,,,,PT00H00M00S
+0000000007,US,Talos Energy,,,,Tx 77002,,,,77002,TX,TALOS ENER,"333 Clay St Ste 3300, Houston,",TALOS ENERGY,Company,0,0,,,2025-01-23,MANJUNATH,0009,,,EN,,,,,,,,,,,,PT00H00M00S
+0000100009,US,Chevron Corporation,,,,Houston,,,,77079,TX,CHEVRON,6001 Bollinger Canyon Rd,CHEVRON CORPORATION,Company,0,0,,,2025-01-24,MANJUNATH,KRED,,,EN,,,,,,,,,,,,PT00H00M00S
+0000100010,US,EOG Resources,,,,Houston,,,,77002,TX,EOG RES,1111 Bagby Street Sky Lobby 2,EOG RESOURCES,Company,0,0,,,2025-01-24,MANJUNATH,KRED,,,EN,,,,,,,,,,,,PT00H00M00S
+0000100000,US,APA Corporation,Apache Corporation,,,Houston,,,,77001,TX,APACHE COR,15 Green Street,APA CORPORATION,,0,0,,,2023-08-23,SRIDEVAN,KRED,,,EN,,,,,,,,,,,,PT00H00M00S
+0000100001,US,BP Oil and Gas,,,,Houston,,,,77001,TX,BP OIL AND,54875 Centeal Park,BP OIL AND GAS,Company,0,0,,,2023-08-24,SRIDEVAN,KRED,,,EN,,,,,,,,,,,,PT00H00M00S
+0000CHEV00,US,CPV,,,,,,,,,CA,CPV,,CPV,Company,0,0,,,2023-08-28,YUVARAJ,0001,,,EN,,,,,,,,,,,,PT00H00M00S
+0000000001,US,Chevy,Chetty,,,Houston,,,,77450,TX,CY,DETREHAN AVE,CHEVY,Mr.,0,0,,,2023-08-28,VIMAL,0009,,,EN,,9080788005,,,,,,,,,,PT00H00M00S
