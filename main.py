@@ -1,6 +1,7 @@
 from func.get_data import fetch_odata_data
 from func.transform_data import convert_to_dataframe
 from func.map_data import get_field_mapping, apply_mapping
+from func.write_data import write_to_s4hana
 from dotenv import load_dotenv
 import os
 
@@ -12,7 +13,7 @@ def main():
 
     # Transform + clean (writes output1.csv)
     ecc_df = convert_to_dataframe(raw)
-    print(f"ECC records loaded: {len(ecc_df)}")
+    # print(f"ECC records loaded: {len(ecc_df)}")
 
     # LLM field mapping: ECC → S/4HANA
     print("Requesting field mapping from LLM...")
@@ -23,6 +24,9 @@ def main():
     s4_df.to_csv("output_s4.csv", index=False)
     print(f"S/4HANA mapped records: {len(s4_df)}")
     print(s4_df.head())
+
+    # Load into S/4HANA HANA DB
+    write_to_s4hana(s4_df)
 
 if __name__ == "__main__":
     main()
