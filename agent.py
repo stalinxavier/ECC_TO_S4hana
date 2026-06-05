@@ -63,29 +63,7 @@ def run_agent(user_input: str, chat_history: list) -> str:
 if __name__ == "__main__":
     print("=" * 60)
     print("  SAP ECC → S/4HANA Migration Agent")
-    print("  Type 'exit' to quit.")
     print("=" * 60)
 
-    chat_history = []
-
-    while True:
-        try:
-            user_input = input("\nYou: ").strip()
-        except (EOFError, KeyboardInterrupt):
-            print("\nExiting.")
-            break
-
-        if user_input.lower() in ("exit", "quit", "q"):
-            print("Goodbye.")
-            break
-
-        if not user_input:
-            continue
-
-        response = run_agent(user_input, chat_history)
-        print(f"\nAgent: {response}")
-
-        chat_history.extend([
-            HumanMessage(content=user_input),
-            AIMessage(content=response),
-        ])
+    response = run_agent("Run the full migration pipeline", [])
+    print(f"\n{response}")
