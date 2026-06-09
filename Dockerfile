@@ -2,7 +2,7 @@
 FROM python:3.13.3-slim
 
 # Set working directory
-WORKDIR /app
+WORKDIR /apps
 
 # Install system dependencies needed by some packages (e.g. hdbcli, cryptography)
 RUN apt-get update && apt-get install -y --no-install-recommends \
