@@ -1,7 +1,6 @@
 from dotenv import load_dotenv
-from langchain.agents import AgentExecutor, create_openai_tools_agent
+from langchain.agents import create_agent
 from langchain_core.messages import AIMessage, HumanMessage
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
 from func.tools import (
     fetch_ecc_data,
@@ -41,23 +40,20 @@ tools = [
     write_to_s4hana,
 ]
 
-prompt = ChatPromptTemplate.from_messages([
-    ("system", _SYSTEM_PROMPT),
-    MessagesPlaceholder("chat_history", optional=True),
-    ("human", "{input}"),
-    MessagesPlaceholder("agent_scratchpad"),
-])
-
-agent = create_openai_tools_agent(map_data_llm, tools, prompt)
-agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
+agent = create_agent(map_data_llm, tools=tools, system_prompt=_SYSTEM_PROMPT)
 
 
 def run_agent(user_input: str, chat_history: list) -> str:
-    result = agent_executor.invoke({
-        "input": user_input,
-        "chat_history": chat_history,
-    })
-    return result["output"]
+    messages = []
+    for msg in chat_history:
+        if isinstance(msg, HumanMessage):
+            messages.append({"role": "user", "content": msg.content})
+        elif isinstance(msg, AIMessage):
+            messages.append({"role": "assistant", "content": msg.content})
+    messages.append({"role": "user", "content": user_input})
+
+    result = agent.invoke({"messages": messages})
+    return result["messages"][-1].content
 
 
 if __name__ == "__main__":

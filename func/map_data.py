@@ -1,13 +1,13 @@
 import json
 import pandas as pd
 from gen_ai_hub.proxy.langchain.openai import ChatOpenAI
-from langchain.prompts import ChatPromptTemplate
+from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 from llm.factory_llm import get_llm
 from llm.model import map_data_llm  
 
 
-MAPPING_PROMPT = ChatPromptTemplate.from_template("""
+MAPPING_PROMPT = PromptTemplate.from_template("""
 You are an SAP migration expert. Map the following SAP ECC vendor master (LFA1 table) fields
 to their S/4HANA Business Partner (A2X API) equivalents.
 

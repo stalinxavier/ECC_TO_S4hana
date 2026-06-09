@@ -1,7 +1,6 @@
 import os
 from gen_ai_hub.proxy.langchain.openai import ChatOpenAI
 from dotenv import load_dotenv
-from langchain.prompts import ChatPromptTemplate
 
 load_dotenv()
 

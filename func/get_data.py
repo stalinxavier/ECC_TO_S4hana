@@ -14,21 +14,21 @@ def fetch_odata_data(url, username, password):
         "Accept": "application/json"
     }
 
-    response = requests.get(
-        url,
-        headers=headers,
-        auth=(username, password)
-    )
+    try:
+        response = requests.get(
+            url,
+            headers=headers,
+            auth=(username, password),
+            timeout=30,
+        )
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.ConnectTimeout:
+        raise ConnectionError(f"Cannot reach SAP ECC server at {url}. Check that the server is running and you are on the correct network/VPN.")
+    except requests.exceptions.ConnectionError:
+        raise ConnectionError(f"Connection refused by SAP ECC server at {url}. Verify the host, port, and network access.")
 
-    response.raise_for_status()
 
-    return response.json()
-
-
-data = fetch_odata_data(
-    url,
-    username,
-    password
-)
-
-# print(data)
+if __name__ == "__main__":
+    data = fetch_odata_data(url, username, password)
+    print(data)
