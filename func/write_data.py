@@ -118,12 +118,22 @@ def write_to_s4hana(df: pd.DataFrame) -> None:
         print("write_to_s4hana: DataFrame is empty — nothing to write.")
         return
 
+    # Guard against any duplicates that survived earlier stages
+    bp_id_col = next((c for c in df.columns if c.lower() in ("businesspartneridbyextsystem", "lifnr")), None)
+    if bp_id_col:
+        before = len(df)
+        df = df.drop_duplicates(subset=[bp_id_col], keep="first")
+        removed = before - len(df)
+        if removed:
+            print(f"write_to_s4hana: dropped {removed} duplicate row(s) by {bp_id_col} before posting.")
+
     session, base_url = _get_session()
     url = f"{base_url}{_BP_SERVICE}/{_BP_ENTITY}"
 
-    created = 0
-    skipped = 0
-    failed  = 0
+    created  = 0
+    already  = 0  # 409 — record exists in S/4HANA
+    skipped  = 0  # missing required fields
+    failed   = 0
 
     for _, row in df.iterrows():
         payload = _build_payload(row.to_dict())
@@ -138,12 +148,12 @@ def write_to_s4hana(df: pd.DataFrame) -> None:
         if resp.status_code == 201:
             created += 1
         elif resp.status_code == 409:
-            skipped += 1
+            already += 1
         else:
             failed += 1
             print(f"write_to_s4hana: POST failed [{resp.status_code}] — {resp.text[:200]}")
 
     print(
-        f"write_to_s4hana: {created} created, {skipped} already existed, {failed} failed "
-        f"(total {len(df)} records)"
+        f"write_to_s4hana: {created} created, {already} already in S/4HANA (409), "
+        f"{skipped} skipped (missing name), {failed} failed — total {len(df)} records"
     )

@@ -30,6 +30,13 @@ def convert_to_dataframe(odata_response, csv_file_path="output1.csv"):
         if col in df.columns:
             df[col] = df[col].astype(str).str.lstrip("0").replace("", "0")
 
+    # 7. Remove duplicate vendor records — keep first occurrence by Lifnr (primary key)
+    before = len(df)
+    df = df.drop_duplicates(subset=["Lifnr"], keep="first")
+    removed = before - len(df)
+    if removed:
+        print(f"transform: removed {removed} duplicate vendor record(s) (same Lifnr); {len(df)} unique vendors remain.")
+
     df.to_csv(csv_file_path, index=False)
 
     return df
